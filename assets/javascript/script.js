@@ -1,6 +1,7 @@
 // array of topics
 var topics = ["dogs", "cats", "tigers", "pandas", "koala",
     "sloths", "chinchillas"];
+    console.log(topics)
 
 // for loop for buttons
 for (var i = 0; i < topics.length; i++) {
@@ -11,11 +12,11 @@ for (var i = 0; i < topics.length; i++) {
 //on click event for each button
 $("button").on("click", function () {
     //     //getting attribute "data-name" and adding url
-    var animal = $(this).attr("data-name");
+for (var i=0; i < topics.length; i++) {
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-        animal + "&api_key=dc6zaTOxFJmzC&limit=10";
+        topics[i] + "&api_key=dc6zaTOxFJmzC&limit=10";
     console.log(queryURL);
-
+};
 
     $.ajax({
         url: queryURL,
