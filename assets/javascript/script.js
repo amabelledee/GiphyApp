@@ -1,23 +1,28 @@
 // array of topics
 var topics = ["dogs", "cats", "tigers", "pandas", "koala",
     "sloths", "chinchillas"];
-    console.log(topics)
+console.log(topics)
 
 // for loop for buttons
 for (var i = 0; i < topics.length; i++) {
-    var button = $('<button>' + topics[i] + '</button>')
-    button.appendTo('#buttonDiv');
-};
+    var button = $("<button>");
+    button.attr("mydata", topics[i]);
+    button.text(topics[i]);
+    button.appendTo("#buttonDiv");
+}
 
 //on click event for each button
 $("button").on("click", function () {
-    //     //getting attribute "data-name" and adding url
-for (var i=0; i < topics.length; i++) {
-    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-        topics[i] + "&api_key=dc6zaTOxFJmzC&limit=10";
-    console.log(queryURL);
-};
-
+    var event = $(this).attr("mydata");
+    // getting attribute "data-name" and adding url
+    for (var i = 0; i < topics.length; i++) {
+        var queryURL =
+            "https://api.giphy.com/v1/gifs/search?q=" +
+            event +
+            "&api_key=dc6zaTOxFJmzC&limit=10";
+        console.log(queryURL);
+    }
+    // ajax method
     $.ajax({
         url: queryURL,
         method: "GET"
@@ -38,7 +43,4 @@ for (var i=0; i < topics.length; i++) {
             }
         });
 });
-// // });
-// //link giphy app to buttons
-// //prepend gifs to page
-// //optional: create search
+
